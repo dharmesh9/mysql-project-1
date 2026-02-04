@@ -99,11 +99,25 @@ WHERE category = "Clothing"
 UPDATE table1
 SET quantity = 3,
     price_per_unit = 185,
-    cogs = 91.86,
     total_sale = 469
 WHERE category = "Clothing"
-and gender ="Female"
-and cogs = 91.86;
+AND gender ="Female"
+AND cogs = 91.86;
 
+-- Q1: Retrieve all columns for sales made on the specific date '2022-02-02'.
 
+SELECT * 
+FROM table1
+WHERE sale_date = "2022-02-02";
 
+-- Q2: List all unique product categories available in the dataset.
+
+SELECT DISTINCT category 
+FROM table1;
+
+-- Q3: Select all transactions where the total_sale is greater than 1000, ordered by value descending.
+
+SELECT * 
+FROM table1
+WHERE total_sale >= 1000
+ORDER BY total_sale DESC;
