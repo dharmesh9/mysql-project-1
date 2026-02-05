@@ -104,6 +104,8 @@ WHERE category = "Clothing"
 AND gender ="Female"
 AND cogs = 91.86;
 
+
+-- Level 1: Beginner
 -- Q1: Retrieve all columns for sales made on the specific date '2022-02-02'.
 
 SELECT * 
@@ -121,3 +123,18 @@ SELECT *
 FROM table1
 WHERE total_sale >= 1000
 ORDER BY total_sale DESC;
+
+-- Q4: Find the total number of unique customers in the database.
+SELECT  COUNT(DISTINCT customer_id) 
+FROM table1;
+
+-- Q5: Count the number of transactions made by each gender.
+SELECT gender,COUNT(transactions_id) 
+FROM table1
+GROUP BY gender;
+
+-- Q6: Write a query to display the transactions_id, the provided total_sale, and
+-- a calculated column (quantity * price_per_unit) to verify data integrity.
+
+SELECT transactions_id, total_sale, (quantity* price_per_unit) as total_sale
+FROM table1;
