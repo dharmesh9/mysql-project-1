@@ -164,3 +164,20 @@ SELECT DATE_FORMAT(sale_date, '%M') as sale_month,
 FROM table1
 GROUP BY sale_month;
 -- ORDER BY sale_month;
+
+-- Q10: Calculate the total Net Profit for each category (where Profit = total_sale - cogs).
+SELECT category, ROUND(SUM(total_sale - cogs),2) AS net_sales
+FROM table1
+GROUP BY category;
+
+-- Q11: Determine the peak shopping hours by counting the number of transactions for each hour of the day.
+SELECT HOUR(sale_time) as peak_shopping_hour, COUNT(transactions_id) AS total_orders
+FROM table1
+GROUP BY sale_time
+ORDER BY total_orders DESC;
+
+-- Q12: Identify categories that have sold a total quantity of more than 1000 units using the HAVING clause.
+SELECT category,SUM(quantity) AS total_quantity
+FROM table1
+GROUP BY category
+HAVING total_quantity >= 1000;
