@@ -181,3 +181,28 @@ SELECT category,SUM(quantity) AS total_quantity
 FROM table1
 GROUP BY category
 HAVING total_quantity >= 1000;
+
+-- Q13: Create a shift analysis by categorizing sales into 'Morning' (before 12 PM), 
+-- 'Afternoon' (12 PM - 5 PM), and 'Evening' (after 5 PM). // Which part of the day (morning/afternoon/evening) has the most revenue?
+SELECT 
+CASE
+WHEN  HOUR(sale_time) < 12 THEN "MORNING"
+WHEN  HOUR(sale_time) BETWEEN 12 AND 17 THEN "AFTERNOOON"
+ELSE "EVENING"
+END AS shifts,
+COUNT(*)  AS total_orders,
+SUM(total_sale) AS total_revenue -- for most revenue
+FROM table1
+GROUP BY 1
+ORDER BY 3 DESC;
+
+-- Q14 Who are the top 5 customers by total spend?
+SELECT 
+	customer_id,
+	SUM(total_sale) AS total_spend,
+	COUNT(*) AS total_orders
+FROM table1
+GROUP BY customer_id 
+ORDER BY 2 DESC 
+LIMIT 5;
+
