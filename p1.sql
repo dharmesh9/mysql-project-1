@@ -189,9 +189,9 @@ CASE
 WHEN  HOUR(sale_time) < 12 THEN "MORNING"
 WHEN  HOUR(sale_time) BETWEEN 12 AND 17 THEN "AFTERNOOON"
 ELSE "EVENING"
-END AS shifts,
-COUNT(*)  AS total_orders,
-SUM(total_sale) AS total_revenue -- for most revenue
+END AS shifts,-- 1
+COUNT(*)  AS total_orders,-- 2
+SUM(total_sale) AS total_revenue -- 3, for most revenue
 FROM table1
 GROUP BY 1
 ORDER BY 3 DESC;
@@ -206,3 +206,10 @@ GROUP BY customer_id
 ORDER BY 2 DESC 
 LIMIT 5;
 
+-- Q15 Which categories generate the highest total revenue?
+SELECT
+    category,
+    SUM(total_sale) AS total_revenue
+FROM TABLE1
+GROUP BY category
+ORDER BY total_revenue DESC;
